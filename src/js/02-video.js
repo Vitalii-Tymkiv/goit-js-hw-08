@@ -9,7 +9,15 @@ const onPlay = function (data) {
 };
 
 player.on('timeupdate', throttle(onPlay, 500));
+let parcedTime = localStorage.getItem('videoplayer-current-time');
+function checkSavedTime() {
+  if (!parcedTime) {
+    parcedTime = 0;
+    return;
+  } else {
+    player.setCurrentTime(parcedTime);
+  }
+}
+checkSavedTime(parcedTime);
 
-const currentTime = localStorage.getItem('videoplayer-current-time');
-player.setCurrentTime(currentTime);
 player.off('timeupdate', onPlay);

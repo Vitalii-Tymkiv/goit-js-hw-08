@@ -37,6 +37,10 @@ function formSubmiter(event) {
   const {
     elements: { email, message },
   } = event.currentTarget;
+  if (email.value === '' || message.value === '') {
+    alert('Заповніть всі поля!');
+    return;
+  }
   console.log({ email: email.value, message: message.value });
   event.currentTarget.reset();
   remove(STORAGE_KEY);
